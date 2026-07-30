@@ -58,13 +58,24 @@ function renderAnnualTable() {
   });
 }
 
+const INDEX_PLAIN_NAMES = { NDVI: 'plant cover', MNDWI: 'water presence', NDBI: 'built-up land' };
+
+function describeChange(direction, percentage) {
+  if (direction === 'stayed about the same') return direction;
+  const size = Number.isFinite(percentage) ? Math.abs(percentage) : null;
+  if (size === null || size < 5) return 'stayed about the same';
+  if (size < 20) return `${direction} a little`;
+  return `${direction} noticeably`;
+}
+
 function renderTrendSummary() {
   const phrases = Object.keys(INDEX_CONFIG).map((index) => {
     const rows = validRowsFor(index); const first = rows[0]; const last = rows.at(-1); const change = last[index] - first[index];
-    const direction = change > 0 ? 'increased' : change < 0 ? 'decreased' : 'did not change';
-    return `${index} ${direction} from ${format(first[index])} in ${first.year} to ${format(last[index])} in ${last.year}`;
+    const percentage = first[index] === 0 ? null : (change / Math.abs(first[index])) * 100;
+    const direction = change > 0 ? 'increased' : change < 0 ? 'decreased' : 'stayed about the same';
+    return `${INDEX_PLAIN_NAMES[index]} ${describeChange(direction, percentage)}`;
   });
-  document.querySelector('#trend-summary').textContent = `Across the available annual values, ${phrases.join('; ')}. This statement describes the calculated first-to-latest values in the supplied CSV and does not establish causes for the observed changes.`;
+  document.querySelector('#trend-summary').textContent = `Across the years on record, ${phrases.join(', ')}. These patterns come straight from the satellite data above.`;
 }
 
 function renderChart() {
