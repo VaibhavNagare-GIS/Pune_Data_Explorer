@@ -11,6 +11,23 @@ function enhancePuneNavigation() {
   targets.forEach((target) => observer.observe(target));
 }
 
+function initTabs() {
+  document.querySelectorAll('.tab-row').forEach((row) => {
+    const buttons = [...row.querySelectorAll('.tab-button')];
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((other) => {
+          const active = other === button;
+          other.setAttribute('aria-selected', String(active));
+          const panel = document.getElementById(other.getAttribute('aria-controls'));
+          if (panel) panel.hidden = !active;
+        });
+        window.dispatchEvent(new Event('resize'));
+      });
+    });
+  });
+}
+
 window.addEventListener('load', () => {
   const repositoryLink = document.querySelector('#repository-link');
   if (repositoryLink) {
@@ -21,3 +38,5 @@ window.addEventListener('load', () => {
   document.querySelectorAll('video[autoplay]').forEach((video) => video.play().catch(() => {}));
   enhancePuneNavigation();
 });
+
+initTabs();
