@@ -30,6 +30,7 @@
 .tab-button:hover { transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--ink); }
 .tab-divider { height:3px; margin:18px 0 0; background:var(--ink); }
 .tab-panel { margin-top:28px; }
+.snapshot-section { display:block; }
 .snapshot-section .tab-row,.snapshot-section .tab-divider,.snapshot-section .tab-panel { grid-column:1/-1; }
 .historical-section { margin-top:86px; padding:clamp(22px,4vw,48px); border:var(--border); box-shadow:var(--shadow); background:#fff; }
 @keyframes card-rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
