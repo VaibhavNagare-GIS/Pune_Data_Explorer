@@ -31,19 +31,19 @@
       <p class="eyebrow">Current conditions</p>
       <h2 id="snapshot-heading">What today's map shows</h2>
       <div class="tab-row tab-row-compact" role="tablist" aria-label="2025 section views">
-        <button type="button" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-conditions" id="tab-conditions">Current conditions</button>
-        <button type="button" class="tab-button" role="tab" aria-selected="true" aria-controls="panel-guide" id="tab-guide">Index guide</button>
+        <button type="button" class="tab-button" role="tab" aria-selected="true" aria-controls="panel-conditions" id="tab-conditions">Current conditions</button>
+        <button type="button" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-guide" id="tab-guide">Index guide</button>
       </div>
       <div class="tab-divider"></div>
-      <div class="tab-panel" id="panel-conditions" role="tabpanel" aria-labelledby="tab-conditions" hidden>
-        <p class="snapshot-label">This is a 2025 snapshot, not the historical time series.</p>
+      <div class="tab-panel" id="panel-conditions" role="tabpanel" aria-labelledby="tab-conditions">
+        <p class="snapshot-label">Real, researched facts about how Pune has grown, not just a list of map layers.</p>
         <div class="layer-grid">
-          <article><h3>Sentinel-2</h3><ul><li>True Colour, hidden initially</li><li>NDVI, visible initially</li><li>MNDWI, hidden initially</li><li>NDBI, hidden initially</li></ul></article>
-          <article><h3>Landsat 9</h3><ul><li>True Colour, hidden initially</li><li>NDVI, hidden initially</li></ul></article>
-          <article><h3>Filters</h3><ul><li>Sentinel-2 cloud filter below 10 percent</li><li>Landsat 9 cloud filter below 20 percent</li></ul></article>
+          <article><h3>Population</h3><p>Pune's population grew from 2,540,069 in the 2001 census to 3,124,458 in 2011, about 23 percent in one decade. The Pune Municipal Corporation area is now home to an estimated 6.2 million people, though the next official census is still pending.</p></article>
+          <article><h3>City boundary</h3><p>In 2021 the state government merged 23 more villages into Pune Municipal Corporation, expanding its area from 331 to 516 square kilometres. This made Pune the largest city by area in Maharashtra, ahead of Mumbai.</p></article>
+          <article><h3>Built-up land</h3><p>A peer-reviewed satellite study found Pune's built-up area grew from about 116.6 to 166.9 square kilometres between 1990 and 2019, a 43 percent rise, while nearby agricultural land fell by roughly 41 percent over the same period.</p></article>
         </div>
       </div>
-      <div class="tab-panel" id="panel-guide" role="tabpanel" aria-labelledby="tab-guide">
+      <div class="tab-panel" id="panel-guide" role="tabpanel" aria-labelledby="tab-guide" hidden>
         <p class="snapshot-label">Plain-language notes on what each index measures, for anyone new to satellite data.</p>
         <div class="notes-grid">
           <article><h3>NDVI</h3><p class="index-fullname">Normalized Difference Vegetation Index</p><p>Measures how much healthy plant growth is present. Higher values mean more green vegetation.</p></article>
