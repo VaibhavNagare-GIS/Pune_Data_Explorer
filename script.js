@@ -69,13 +69,19 @@ function describeChange(direction, percentage) {
 }
 
 function renderTrendSummary() {
+  const firstYear = annualData[0].year;
+  const lastYear = annualData.at(-1).year;
   const phrases = Object.keys(INDEX_CONFIG).map((index) => {
     const rows = validRowsFor(index); const first = rows[0]; const last = rows.at(-1); const change = last[index] - first[index];
     const percentage = first[index] === 0 ? null : (change / Math.abs(first[index])) * 100;
     const direction = change > 0 ? 'increased' : change < 0 ? 'decreased' : 'stayed about the same';
-    return `${INDEX_PLAIN_NAMES[index]} ${describeChange(direction, percentage)}`;
+    const magnitude = describeChange(direction, percentage);
+    const roundedPercent = Number.isFinite(percentage) ? `${Math.round(Math.abs(percentage))} percent` : null;
+    return (roundedPercent && magnitude !== 'stayed about the same')
+      ? `${INDEX_PLAIN_NAMES[index]} ${magnitude}, moving by roughly ${roundedPercent} over this period`
+      : `${INDEX_PLAIN_NAMES[index]} ${magnitude}`;
   });
-  document.querySelector('#trend-summary').textContent = `Across the years on record, ${phrases.join(', ')}. These patterns come straight from the satellite data above.`;
+  document.querySelector('#trend-summary').textContent = `Between ${firstYear} and ${lastYear}, ${phrases.join('; ')}. NDVI reflects plant cover, MNDWI reflects visible water, and NDBI reflects built-up land. These patterns come straight from the satellite data shown above, not from any outside analysis.`;
 }
 
 function renderChart() {
